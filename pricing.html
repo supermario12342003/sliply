@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sliply pricing — Free vs Pro. Pro coming soon: €9/mo or €29 lifetime. Join the waitlist." />
+  <title>Pricing — Sliply</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">S</span> Sliply</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Generator</a></li>
+        <li><a href="pricing.html" aria-current="page">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="page container">
+    <div style="max-width:42rem;margin-bottom:0.5rem">
+      <h1 style="letter-spacing:-0.03em">Simple pricing</h1>
+      <p>Start free. Pro unlocks unlimited on-device history and clean PDFs — <strong>coming soon</strong>. No payment is collected on this page.</p>
+    </div>
+
+    <!-- AdSense placeholder -->
+    <div class="ad-slot leaderboard" data-ad-slot="ADSENSE_PRICING_LEADERBOARD_ID" aria-hidden="true">
+      <!-- Google AdSense unit: pricing page leaderboard -->
+      Ad slot · leaderboard
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h2>Free</h2>
+        <div class="price-amount">€0 <span>/ forever</span></div>
+        <ul>
+          <li>Unlimited drafts in the session</li>
+          <li>Print &amp; PDF export</li>
+          <li>On-device ledger (max 10)</li>
+          <li>Small “Powered by Sliply” mark</li>
+          <li>No account required</li>
+        </ul>
+        <a class="btn btn-secondary" href="index.html">Use free generator</a>
+      </div>
+
+      <div class="price-card featured">
+        <div><span class="coming-soon">Coming soon</span></div>
+        <h2>Pro</h2>
+        <div class="price-amount">€9 <span>/ month</span></div>
+        <p style="margin:0;font-size:0.9rem;color:var(--muted)">or <strong>€29 lifetime</strong> (one-time, planned)</p>
+        <ul>
+          <li>Unlimited on-device ledger</li>
+          <li>No watermark on PDF / print</li>
+          <li>Priority templates (planned)</li>
+          <li>Ad-light experience (planned)</li>
+        </ul>
+        <p class="field-hint" style="margin:0">Payments are <strong>not</strong> enabled yet. Join the waitlist — stored locally and optionally emailed.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.75rem;max-width:36rem">
+      <div class="card-title">Pro waitlist</div>
+      <form id="waitlist-form">
+        <div class="field">
+          <label for="waitlist-email">Email</label>
+          <input id="waitlist-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label>Interest</label>
+          <label style="font-weight:500;display:flex;gap:0.4rem;align-items:center;margin-bottom:0.35rem">
+            <input type="radio" name="plan" value="monthly" checked /> €9 / month
+          </label>
+          <label style="font-weight:500;display:flex;gap:0.4rem;align-items:center">
+            <input type="radio" name="plan" value="lifetime" /> €29 lifetime
+          </label>
+        </div>
+        <button type="submit" class="btn">Join waitlist</button>
+        <p class="field-hint" style="margin-top:0.75rem;margin-bottom:0">
+          Saves to <code>localStorage</code> on this device, then opens a mailto draft to
+          <a href="mailto:hello@sliply.app">hello@sliply.app</a>. No charge. No invented revenue.
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="margin:0;padding:0;border:0">
+      <span>© 2026 Sliply</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="contact.html">Contact</a></span>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

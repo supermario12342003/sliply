@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sliply — free online receipt generator with a private on-device ledger. Create, print, and PDF receipts in your browser. No account required." />
+  <meta name="theme-color" content="#0d9488" />
+  <title>Sliply — Free Receipt Generator &amp; Ledger</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header no-print">
+    <div class="container nav">
+      <a class="logo" href="index.html" aria-label="Sliply home">
+        <span class="logo-mark" aria-hidden="true">S</span>
+        Sliply
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" aria-current="page">Generator</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="pricing.html" class="nav-cta">Go Pro</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container no-print">
+      <h1>Create clean receipts in seconds</h1>
+      <p>
+        Numbered receipts with line items, optional tax, print or PDF — and a simple ledger that stays on your device.
+        Free forever for light use. No signup.
+      </p>
+      <div class="pill-row">
+        <span class="pill">Works offline after first load*</span>
+        <span class="pill">EUR · FR/EU friendly</span>
+        <span class="pill">Max 10 free ledger slots</span>
+        <span class="pill">Private localStorage</span>
+      </div>
+    </section>
+
+    <!-- AdSense placeholder: top leaderboard. Replace data-ad-slot when approved. -->
+    <div class="container no-print">
+      <div class="ad-slot leaderboard" data-ad-slot="ADSENSE_LEADERBOARD_ID" aria-hidden="true">
+        <!-- Google AdSense unit: leaderboard (728×90 / responsive) — insert script + ins.adsbygoogle here -->
+        Ad slot · leaderboard
+      </div>
+    </div>
+
+    <div class="container app-layout">
+      <div class="editor-pane no-print">
+        <div class="card" id="receipt-form">
+          <div class="card-title">
+            <span>Receipt details</span>
+            <span class="badge">Free</span>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-number">Receipt number</label>
+              <input id="f-number" type="text" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="f-date">Date</label>
+              <input id="f-date" type="date" />
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-from">From (your business)</label>
+              <textarea id="f-from" placeholder="Name&#10;Address&#10;SIRET / VAT (optional)"></textarea>
+            </div>
+            <div class="field">
+              <label for="f-to">To / Bill to</label>
+              <textarea id="f-to" placeholder="Client name&#10;Address"></textarea>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-tax">Tax rate % (optional)</label>
+              <input id="f-tax" type="number" min="0" max="100" step="0.1" value="0" />
+              <span class="field-hint">e.g. 20 for French TVA 20%</span>
+            </div>
+            <div class="field">
+              <label for="f-currency">Currency</label>
+              <select id="f-currency">
+                <option value="EUR" selected>EUR (€)</option>
+                <option value="USD">USD ($)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="CHF">CHF</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card-title" style="margin-top:0.5rem">
+            <span>Line items</span>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-add-item">+ Add line</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="items-table">
+              <thead>
+                <tr>
+                  <th class="col-desc">Description</th>
+                  <th class="col-qty">Qty</th>
+                  <th class="col-price">Unit price</th>
+                  <th class="col-total">Amount</th>
+                  <th class="col-act"></th>
+                </tr>
+              </thead>
+              <tbody id="items-body"></tbody>
+            </table>
+          </div>
+
+          <div class="totals">
+            <div class="row"><span>Subtotal</span><span class="mono" id="sum-subtotal">0,00 €</span></div>
+            <div class="row"><span>Tax</span><span class="mono" id="sum-tax">0,00 €</span></div>
+            <div class="row grand"><span>Total</span><span class="mono" id="sum-total">0,00 €</span></div>
+          </div>
+
+          <div class="field" style="margin-top:1rem">
+            <label for="f-notes">Notes</label>
+            <textarea id="f-notes" placeholder="Payment terms, thank-you note…"></textarea>
+          </div>
+
+          <div class="btn-row" style="margin-top:0.5rem">
+            <button type="button" class="btn" id="btn-save">Save to ledger</button>
+            <button type="button" class="btn btn-secondary" id="btn-pdf">Download PDF</button>
+            <button type="button" class="btn btn-secondary" id="btn-print">Print</button>
+            <button type="button" class="btn btn-ghost" id="btn-new">New</button>
+            <button type="button" class="btn btn-danger btn-sm" id="btn-delete">Delete</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.25rem">
+          <div class="card-title">
+            <span>On-device ledger</span>
+            <span class="badge badge-muted">localStorage</span>
+          </div>
+          <ul class="ledger-list" id="ledger-list"></ul>
+          <div class="limit-bar" id="limit-info"></div>
+        </div>
+      </div>
+
+      <div class="preview-pane">
+        <div class="card-title no-print" style="margin-bottom:0.75rem">
+          <span>Live preview</span>
+          <span class="badge badge-warn">Watermark on free</span>
+        </div>
+        <div class="receipt-preview" id="receipt-preview" aria-live="polite"></div>
+
+        <!-- AdSense placeholder: sidebar. Replace data-ad-slot when approved. -->
+        <div class="ad-slot sidebar no-print" data-ad-slot="ADSENSE_SIDEBAR_ID" aria-hidden="true" style="margin-top:1.25rem">
+          <!-- Google AdSense unit: sidebar (300×250) — insert script + ins.adsbygoogle here -->
+          Ad slot · sidebar
+        </div>
+      </div>
+    </div>
+
+    <!-- AdSense placeholder: inline footer. -->
+    <div class="container no-print">
+      <div class="ad-slot inline" data-ad-slot="ADSENSE_INLINE_ID" aria-hidden="true">
+        <!-- Google AdSense unit: in-article / fluid — insert script + ins.adsbygoogle here -->
+        Ad slot · inline
+      </div>
+      <p class="field-hint" style="margin-bottom:2rem">
+        *Fonts and the PDF library load from CDNs when online; after that, creating and printing receipts works from cache / localStorage.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Sliply</div>
+          <p style="margin:0;font-size:0.875rem">Free receipt generator with a private browser ledger. Built for freelancers and small shops.</p>
+        </div>
+        <div>
+          <div class="footer-brand">Product</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Generator</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-brand">Legal</div>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Sliply · Not legal advice · Receipts are your responsibility</span>
+        <span>Made for creators in France &amp; the EU</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
