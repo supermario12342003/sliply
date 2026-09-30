@@ -15,3 +15,12 @@ h2 { font-size:1.2rem; margin-top:2rem; }
 ul { padding-left:1.2rem; }
 footer { margin-top:3rem; padding-top:1rem; border-top:1px solid #334155; font-size:.875rem; color:var(--muted); }
 .tpl { font-family: ui-monospace, monospace; white-space:pre-wrap; background:#0b1220; padding:1rem; border-radius:.5rem; font-size:.85rem; overflow-x:auto; }
+
+.related { margin-top:2rem; }
+.related ul { list-style: none; padding:0; }
+.related li { margin:.4rem 0; }
+.related a { text-decoration:none; font-weight:600; }
+.related a:hover { text-decoration:underline; }
+.guide-list { columns:1; }
+@media(min-width:640px){ .guide-list { columns:2; } }
+.guide-list li { break-inside: avoid; margin:.35rem 0; }

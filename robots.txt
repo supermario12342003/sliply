@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://supermario12342003.github.io/sliply/sitemap.xml
